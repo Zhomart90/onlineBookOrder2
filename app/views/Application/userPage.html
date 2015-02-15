@@ -1,0 +1,21 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+<script src="@{'/public/javascripts/userPage.js'}" type="text/javascript"
+	charset="${_response_encoding}"></script>
+
+<article>
+  <header>
+    <h1 id="welcome_text"></h1>
+  </header>
+</article>
+
+<section>
+    Книги которые вы заказали:
+    <nav><ul></ul></nav>
+    Выберите жанр книги:<br>
+    <select></select><br>
+    Книги по жанру:
+    <div id = "books_by_selected_genre">
+    </div>
+    <button type="button" id="order_book_button">Заказать книгу</button>
+</section>
+<a href="@{Application.index}">Назад</a><br>

@@ -1,0 +1,20 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+<script src="@{'/public/javascripts/signUpPage.js'}" type="text/javascript"
+	charset="${_response_encoding}"></script>
+
+<section>
+   
+	<form action="@{Application.signUp()}" method="GET">
+		Имя:<br> 
+		<input type="text" name="user.name" placeholder="Имя" > <br>
+		Фамилия:<br> 
+		<input type="text" name="user.surname" placeholder="Фамилия" ><br>
+		Логин:<br> 
+		<input type="text" name="user.login" placeholder="Логин" ><br>
+		Пароль:<br> 
+		<input type="text" name="user.password" placeholder="Пароль" ><br>
+		<input type="submit" value="Зарегистрироваться" />
+	</form>
+     
+     <a href="@{Application.index}">Назад</a>
+</section>

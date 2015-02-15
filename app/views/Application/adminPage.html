@@ -1,0 +1,32 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+<script src="@{'/public/javascripts/adminPage.js'}" type="text/javascript"
+	charset="${_response_encoding}"></script>
+
+<section>
+    
+	<form action="@{Application.addGenre()}" method="GET">
+		Название жанра:<br> 
+		<input type="text" name="genre.name" placeholder="Название" > <br>
+		<input type="submit" value="Добавить жанр" />
+	</form>
+     
+</section>
+
+<hr>  
+
+<section>
+    
+	<form action="@{Application.addBook()}" method="GET">
+		Название книги:<br> 
+		<input type="text" name="book.name" placeholder="Название" > <br>
+		Автор книги:<br> 
+		<input type="text" name="book.author" placeholder="Автор" > <br>
+		Жанр книги:<br>
+		<select></select><br>
+		Год выпуска книги:<br>
+		<input type="text" name="book.manuyear" placeholder="Год выпуска" /> </br>
+		<button type="button">Добавить книгу</button>
+    </form>
+     
+</section>
+ <a href="@{Application.index}">Назад</a><br>

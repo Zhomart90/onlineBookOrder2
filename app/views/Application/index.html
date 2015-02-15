@@ -1,0 +1,18 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+<script src="@{'/public/javascripts/index.js'}" type="text/javascript"
+	charset="${_response_encoding}"></script>
+
+<section>
+    <a href="@{Application.signUpPage}">Зарегистрироваться</a><br>
+    <a href="@{Application.adminPage}">Cтраница админа</a>
+	
+	<form action="@{Application.signIn()}" method="GET">
+		Логин:<br> 
+		<input type="text" name="login" placeholder="Логин" > <br>
+		Пороль:<br> 
+		<input type="text" name="password" placeholder="Пароль" ><br>
+		<input type="submit" value="Войти" />
+	</form>
+     
+</section>
+
