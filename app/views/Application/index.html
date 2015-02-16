@@ -1,18 +1,26 @@
 #{extends 'main.html' /} #{set title:'Home' /}
 <script src="@{'/public/javascripts/index.js'}" type="text/javascript"
 	charset="${_response_encoding}"></script>
-
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/index.css'}">
+	
 <section>
     <a href="@{Application.signUpPage}">Зарегистрироваться</a><br>
     <a href="@{Application.adminPage}">Cтраница админа</a>
-	
-	<form action="@{Application.signIn()}" method="GET">
-		Логин:<br> 
-		<input type="text" name="login" placeholder="Логин" > <br>
-		Пороль:<br> 
-		<input type="text" name="password" placeholder="Пароль" ><br>
-		<input type="submit" value="Войти" />
-	</form>
-     
+    <div id="wrapper">	
+	    <form action="@{Application.signIn()}" method="GET">
+	        <fieldset>
+	            <legend>Sign Up Form</legend>
+		        <input type="text" name="login" placeholder="Логин" > <br>
+		        <input type="text" name="password" placeholder="Пароль" ><br>
+		        <input type="submit" value="Войти" />
+		        #{if flash.error}
+                    <p style="color:#c00">
+                        ${flash.error}
+                    </p>
+                #{/if}
+	        </fieldset>
+	    </form>
+  </div>	
 </section>
+
 

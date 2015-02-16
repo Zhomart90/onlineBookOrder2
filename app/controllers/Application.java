@@ -19,14 +19,24 @@ public class Application extends Controller {
 	}
 
 	public static void signIn(String login, String password) {
-		
-		validation.required(login);
-		validation.required(password);
-		
 		System.out.println("login: " + login);
 		System.out.println("password: " + password);
-		User connectedUser = User.find("byLoginAndPassword", login, password)
+	    User connectedUser = User.find("byLoginAndPassword", login, password)
 				.first();
+	    
+	    if(login.equals("") && password.equals("")) {
+	    	flash.error("Введите пожалуйста ваш логин и пароль!");
+	        index();
+	    }
+	    if(login.equals("")){
+	    	flash.error("Введите пожалуйста ваш логин!");
+	    	index();
+	    }
+	    if(password.equals("")){
+	    	flash.error("Введите пожалуйста ваш пароль!");
+	    	index();
+	    }
+	    
 		if (connectedUser != null) {
 			if (connectedUser.getLogin().equals("admin")) {
 				adminPage();
@@ -35,7 +45,9 @@ public class Application extends Controller {
 				userPage();
 			}
 		}else{
-			System.out.println("There is no such user in database");
+			System.out.println("No such user in database!");
+			flash.error("Неверное имя пользователя или пароль!");
+			index();
 		}
 	}
 
