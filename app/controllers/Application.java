@@ -21,22 +21,22 @@ public class Application extends Controller {
 	public static void signIn(String login, String password) {
 		System.out.println("login: " + login);
 		System.out.println("password: " + password);
-	    User connectedUser = User.find("byLoginAndPassword", login, password)
+		User connectedUser = User.find("byLoginAndPassword", login, password)
 				.first();
-	    
-	    if(login.equals("") && password.equals("")) {
-	    	flash.error("Введите пожалуйста ваш логин и пароль!");
-	        index();
-	    }
-	    if(login.equals("")){
-	    	flash.error("Введите пожалуйста ваш логин!");
-	    	index();
-	    }
-	    if(password.equals("")){
-	    	flash.error("Введите пожалуйста ваш пароль!");
-	    	index();
-	    }
-	    
+
+		if (login.equals("") && password.equals("")) {
+			flash.error("Введите пожалуйста ваш логин и пароль!");
+			index();
+		}
+		if (login.equals("")) {
+			flash.error("Введите пожалуйста ваш логин!");
+			index();
+		}
+		if (password.equals("")) {
+			flash.error("Введите пожалуйста ваш пароль!");
+			index();
+		}
+
 		if (connectedUser != null) {
 			if (connectedUser.getLogin().equals("admin")) {
 				adminPage();
@@ -44,7 +44,7 @@ public class Application extends Controller {
 				System.out.println("System will open userPage");
 				userPage();
 			}
-		}else{
+		} else {
 			System.out.println("No such user in database!");
 			flash.error("Неверное имя пользователя или пароль!");
 			index();
@@ -126,7 +126,6 @@ public class Application extends Controller {
 						+ book.getName());
 				userOrderedBooks.add(book);
 				newOrderedBooks.add(book);
-				break;
 			}
 		}
 		System.out.println("the size of userOrderedBooks: "
