@@ -2,7 +2,34 @@
 <script src="@{'/public/javascripts/signUpPage.js'}" type="text/javascript"
 	charset="${_response_encoding}"></script>
 
-<section>
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/signUpPage.css'}">	
+<div id="back_link"><a href="@{Application.index}">Назад</a></div>
+
+<div id="page_align">
+    
+    <div class="content">
+      <form action="@{Application.signUp()}" method="GET">
+		<input type="text" name="user.name" placeholder="Имя" > <br>
+		
+		<input type="text" name="user.surname" placeholder="Фамилия" ><br>
+		 
+		<input type="text" name="user.login" placeholder="Логин" ><br>
+		
+		<input type="text" name="user.password" placeholder="Пароль" ><br>
+		
+		<input type="submit" value="Зарегистрироваться" />
+	  </form>	
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<!-- <section>
    
 	<form action="@{Application.signUp()}" method="GET">
 		Имя:<br> 
@@ -17,4 +44,4 @@
 	</form>
      
      <a href="@{Application.index}">Назад</a>
-</section>
+</section> -->

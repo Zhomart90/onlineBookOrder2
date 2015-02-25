@@ -87,22 +87,16 @@ public class Application extends Controller {
 		}
 	}
 
-	public static void orderBook(String selectedBooks, String surnameName) {
+	public static void orderBook(String selectedBooks, String login) {
 		List<Book> userOrderedBooks = new ArrayList<Book>();
 		List<Book> newOrderedBooks = new ArrayList<Book>();
 		System.out.println("selectedBooks " + selectedBooks);
-		System.out.println(" surnameName " + surnameName);
-		String[] namSur = surnameName.split(",");
-		String name = namSur[1];
-		String surname = namSur[0];
-		System.out.println("name: " + name);
-		System.out.println("surname: " + surname);
+		System.out.println(" login " + login);
 
-		User user = User.find("byNameAndSurname", name, surname).first();
+		User user = User.find("byLogin", login).first();
 		if (user != null) {
-			System.out
-					.println("We found user byNameAndSurname and his login is: "
-							+ user.getLogin());
+			System.out.println("We found user byLogin and his surname is: "
+					+ user.getSurname());
 		}
 		userOrderedBooks = user.getBooks();
 		System.out.println("userOrderedBooks size: " + userOrderedBooks.size());

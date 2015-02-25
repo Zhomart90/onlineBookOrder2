@@ -1,21 +1,96 @@
 #{extends 'main.html' /} #{set title:'Home' /}
 <script src="@{'/public/javascripts/userPage.js'}" type="text/javascript"
 	charset="${_response_encoding}"></script>
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/userPage.css'}">	
 
-<article>
-  <header>
-    <h1 id="welcome_text"></h1>
+
+<div id="page_align">
+
+  <div id="header">
+       <a href="@{Application.index}" class="button">Выход</a>
+       <p>text</p>
+  </div>  
+
+  <div id="content">
+    
+    <div class="content_left">
+      
+      <div class="ordered_books">
+          <h3> Ваши книги: </h3>
+          <div class="ordered_books_list">
+              <ul></ul>
+          </div>
+      </div>
+
+    </div> 
+
+    <div class="content_right">
+      
+     
+
+        <div class="genre_name">
+           <h3>Выберите жанр книги:</h3> 
+          <select></select>
+        </div>
+
+        <div class="books_by_genre">
+           <div id = "books_by_selected_genre"></div>
+           <button type="button" id="order_book_button">Заказать книгу</button>
+       </div> 
+      
+      <div class="content_right_text">
+        <h3>Заказывайте книги онлайн</h3>
+        <p>Nam eget aliquet nibh. Aliquam faucibus vestibulum eros vitae fermentum. Phasellus id nisi sit amet nunc ultrices maximus. Fusce quis laoreet ligula. Nullam nec vestibulum turpis. Fusce iaculis dui nulla, et tempus eros rhoncus id. Morbi a ipsum ligula. Nulla purus nunc, iaculis eu malesuada at, rhoncus vitae nibh. Aliquam interdum, ipsum eget convallis dictum, eros felis pretium tortor, vitae fermentum leo neque sed purus. Maecenas iaculis quam at finibus sagittis. Praesent dapibus leo sit amet nisi elementum, nec egestas felis dapibus. Integer in pharetra arcu, vel mollis justo. Nulla facilisi. Maecenas ut est efficitur, laoreet urna sed, congue diam. Nulla sodales sed orci in aliquet. Suspendisse dignissim elementum lorem eget suscipit.</p>
+
+      </div>
+
+    </div> 
+  
+  </div>
+
+</div>
+
+
+  <!-- <header>
+    <div class="authenticated-user"><p id="welcome_text">  <a href="@{Application.index}">Назад</a></p></div>
+    <div class="exit-link" ><p><a href="@{Application.index}" class="button">Выход</a></p></div>
   </header>
-</article>
+
 
 <section>
-    Книги которые вы заказали:
-    <nav><ul></ul></nav>
-    Выберите жанр книги:<br>
-    <select></select><br>
-    Книги по жанру:
-    <div id = "books_by_selected_genre">
-    </div>
-    <button type="button" id="order_book_button">Заказать книгу</button>
+   
+   <div class="select-book">
+       
+       <div class="genre-name">
+           Выберите жанр книги:  <select></select><br>
+       </div>
+       
+       <div class="books-by-genre">
+           <div id = "books_by_selected_genre"></div>
+           <button type="button" id="order_book_button">Заказать книгу</button>
+       </div> 
+  
+   </div>
+    
+    
+    
+   <div class="ordered-books">
+       
+       <div class="ordered-books-text">
+           <p>Книги которые вы заказали:</p>
+       </div>
+       
+       <div class="ordered-books-list">
+           <nav><ul></ul></nav>
+       </div>
+   
+   </div>
+    
+    
 </section>
-<a href="@{Application.index}">Назад</a><br>
+
+<footer>
+<div class="footer-text">
+<p>metaphor.kz</p>
+</div>
+</footer> -->

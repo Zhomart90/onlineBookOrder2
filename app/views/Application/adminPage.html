@@ -2,7 +2,51 @@
 <script src="@{'/public/javascripts/adminPage.js'}" type="text/javascript"
 	charset="${_response_encoding}"></script>
 
-<section>
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/adminPage.css'}">
+
+<div id="back_link"><a href="@{Application.index}">Назад</a></div>	
+
+
+<div id="page_align">
+
+	<div class="content_left">
+		<div class="left_form">
+			
+			<form action="@{Application.addGenre()}" method="GET">
+		
+		        <input type="text" name="genre.name" placeholder="Название жанра" > <br>
+		        <input type="submit" value="Добавить жанр" />
+	        </form>
+
+		</div>	
+	</div>	
+
+	<div class="content_right">
+		
+		<div class="right_form">
+		    <form action="@{Application.addBook()}" method="GET">
+		
+		<input type="text" name="book.name" placeholder="Название" > <br>
+		
+		<input type="text" name="book.author" placeholder="Автор" > <br>
+		
+		
+		
+		<input type="text" name="book.manuyear" placeholder="Год выпуска" /> </br>
+
+		<select></select><br>
+		
+		<button type="button">Добавить книгу</button>
+    </form>
+		</div>
+
+    </div>
+
+</div>
+
+
+
+<!-- <section>
     
 	<form action="@{Application.addGenre()}" method="GET">
 		Название жанра:<br> 
@@ -30,3 +74,4 @@
      
 </section>
  <a href="@{Application.index}">Назад</a><br>
+ -->

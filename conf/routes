@@ -8,7 +8,7 @@ GET     /application/user.json/{login}                                     Appli
 GET     /application/userOrderedBooks.json/{login}                         Application.getUserOrderedBooks
 GET     /application/allGenres.json/                                       Application.getAllGenres
 GET     /application/booksByGenre.json/{selectedGenreId}                   Application.getBooksById
-#GET     /application/orderedBooks/{selectedBooks}/{surnameName}            Application.orderBook
+#GET     /application/orderedBooks/{selectedBooks}/{login}                 Application.orderBook
 GET     /application/book/{name}/{author}/{date}/{genreId}                 Application.addBook
 
 # Ignore favicon requests

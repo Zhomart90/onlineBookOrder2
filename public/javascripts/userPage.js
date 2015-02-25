@@ -5,6 +5,8 @@ $(document).ready(function(){
 	getUserDataByLogin();
 	getUserOrderedBooks();
 	
+	
+	
 	$('select').change( function() {
 		getBooksByGenre();
     });
@@ -27,7 +29,7 @@ $(document).ready(function(){
                     $.get("booksByGenre.json/"+item.id, function(data) {
                     	clean$books_by_selected_genre();
             	        $.each(data, function(index, item) {
-            	            $("#books_by_selected_genre").append(" <input type='checkbox' value='"+ item.id+"' name='"+item.name+"' >"+ item.name+"</input> <br/>");
+            	            $("#books_by_selected_genre").append("<div class='book_checkbox'> <input type='checkbox'  value='"+ item.id+"' name='"+item.name+"' >"+ item.name+"</input> </div>");
             	        });
             	    });
             	}else{
@@ -43,41 +45,53 @@ $(document).ready(function(){
 	    console.log("selectedGenreId: "+selectedGenreId)
 		$.get("booksByGenre.json/"+selectedGenreId, function(data) {
 			$.each(data, function(index, item) {
-	            $("#books_by_selected_genre").append(" <input type='checkbox' value='"+ item.id+"' name='"+item.name+"'>"+ item.name+"</input> <br/>");
+	            $("#books_by_selected_genre").append("<div class='book_checkbox'> <input type='checkbox'  value='"+ item.id+"' name='"+item.name+"'>"+ item.name+"</input> </div>");
 	        });
 	    });
 	}
 	
 	function orderBook(){
-		 var selectedBooks = "";
-		 var $welcome_text = $("#welcome_text").text();
-		 var surname = $welcome_text.split(" ")[3];
-		 var name = $welcome_text.split(" ")[4];
-	     var surnameName = surname+","+name;
-	     console.log("surnamename"+surnameName);
+	    var selectedBooks = "";
+		var selectedBooksNames = [];
+		var repeatedlyOrderedBooks = [];
+		var login = localStorage.getItem("login");
 		
-	     $(':checkbox:checked').each(function() {
-			 console.log(this.value);
-			 if (selectedBooks == ""){
-				 selectedBooks = selectedBooks+this.value;
-			 }else{
-				 selectedBooks = selectedBooks+","+this.value;
-			 }
-		 });
-		 console.log("selectedBooks: "+selectedBooks);
+	    $(':checkbox:checked').each(function() {
+			console.log(this.value);
+			selectedBooksNames.push(this.name);
+			if (selectedBooks == ""){
+				selectedBooks = selectedBooks+this.value;
+			}else{
+				selectedBooks = selectedBooks+","+this.value;
+			}
+		});
 		 
-		 $.post('orderBook',{selectedBooks:selectedBooks , surnameName: surnameName},function(data){
-		     $.each(data, function(index, item) {
-		         $('ul').append( "<li id ='"+item.name+"'>"+ item.name+"</li>");
-		     });			 
-		 },'json')
+	    console.log("selectedBooks: "+selectedBooks);
+		console.log("selectedBooksNames: "+ selectedBooksNames)
+		 
+		$( "li" ).each(function( index ) {
+			 console.log( index + ": " + $( this ).text() );
+			 for (var i = 0; i < selectedBooksNames.length; i++) {
+			     if($( this ).text() == selectedBooksNames[i]){
+				     repeatedlyOrderedBooks.push(selectedBooksNames[i]);
+				 }
+			 }    
+	    });
+		 
+		console.log("repeatedlyOrderedBooks: "+repeatedlyOrderedBooks);
+		 
+		$.post('orderBook',{selectedBooks:selectedBooks , login: login},function(data){
+		    $.each(data, function(index, item) {
+		        $('ul').append( "<li id ='"+item.name+"'>"+ item.name+"</li>");
+		    });			 
+		},'json')
 	}
 	
 	function getUserDataByLogin(){
 		var login = localStorage.getItem("login");
         console.log("login: "+login);
         $.get("user.json/"+login, function(data) {
-	        $("#welcome_text").text(" Добро пожаловать "+ data.surname+" "+ data.name);
+	        $("#header p").text( data.surname+" "+ data.name);
 	    });
 	}
 	
