@@ -5,8 +5,6 @@ $(document).ready(function(){
 	getUserDataByLogin();
 	getUserOrderedBooks();
 	
-	
-	
 	$('select').change( function() {
 		getBooksByGenre();
     });
@@ -29,8 +27,16 @@ $(document).ready(function(){
                     $.get("booksByGenre.json/"+item.id, function(data) {
                     	clean$books_by_selected_genre();
             	        $.each(data, function(index, item) {
-            	            $("#books_by_selected_genre").append("<div class='book_checkbox'> <input type='checkbox'  value='"+ item.id+"' name='"+item.name+"' >"+ item.name+"</input> </div>");
+            	        	if(index==0){
+            	        		showBookDescription(item.id);
+            	        	}
+            	            $("#books_by_selected_genre").append("<div  class='book_checkbox' id='"+item.id+"'> <input type='checkbox'  value='"+ item.id+"' name='"+item.name+"' >"+ item.name+"</input> </div>");
             	        });
+            	        $('.book_checkbox').click(function(){
+        	             	var bookId=$(this).attr('id');
+        	             	console.log("inputId: "+bookId);
+        	             	showBookDescription(bookId);
+        	            });
             	    });
             	}else{
             		$("select").append(" <option value='"+ item.id+"' >"+ item.name+"</input> <br/>");	
@@ -45,8 +51,26 @@ $(document).ready(function(){
 	    console.log("selectedGenreId: "+selectedGenreId)
 		$.get("booksByGenre.json/"+selectedGenreId, function(data) {
 			$.each(data, function(index, item) {
-	            $("#books_by_selected_genre").append("<div class='book_checkbox'> <input type='checkbox'  value='"+ item.id+"' name='"+item.name+"'>"+ item.name+"</input> </div>");
+				if(index==0){
+	        		showBookDescription(item.id);
+	        	}
+	            $("#books_by_selected_genre").append("<div  class='book_checkbox' id='"+item.id+"'> <input type='checkbox'  value='"+ item.id+"' name='"+item.name+"'>"+ item.name+"</input> </div>");
 	        });
+			    $('.book_checkbox').click(function(){
+	             	var bookId=$(this).attr('id');
+	             	console.log("inputId: "+bookId);
+	                showBookDescription(bookId);
+	            });
+	    });
+	}
+	
+	function showBookDescription(bookId){
+		$.get("bookForDescription.json/"+bookId, function(book) {
+     		console.log("book"+book);
+            console.log("book description: "+book.description);
+	        $(".content_right_text h3").text(book.name);
+	        $(".content_right_text p").text(book.description);
+	        $(".content_right_text span").text("Автор: "+book.author);
 	    });
 	}
 	

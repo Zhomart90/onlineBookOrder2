@@ -3,7 +3,9 @@ $(document).ready(function(){
 	
 	$("button").click(function(){
 		addBook();	
-	})
+	});
+	
+	
 	
 	
 	function getGenres(){
@@ -25,8 +27,10 @@ $(document).ready(function(){
 		var bookAuthor = $("input[name = 'book.author']").val();
 		var bookManuYear = $("input[name = 'book.manuyear']").val();
 		var bookGenreId = $('select').find(":selected").attr("value");
-		console.log( bookName +" "+bookAuthor+" bookManuYear: "+bookManuYear+" "+bookGenreId);
-		$.get("book/" + bookName+"/"+bookAuthor+"/"+bookManuYear+"/"+bookGenreId ) ;
+		var bookDescription = $('textarea').val();
+		console.log( bookName +" "+bookAuthor+" bookManuYear: "+bookManuYear+" "+bookGenreId+""+bookDescription);
+		
+		$.post("book/" + bookName+"/"+bookAuthor+"/"+bookManuYear+"/"+bookGenreId +"/"+bookDescription) ;
 		
 	}
 	

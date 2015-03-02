@@ -21,6 +21,11 @@
     margin-left: 35px;
 }
 
+.content p{
+	margin-left: 43px;
+	font-size:14px;
+}
+
 input{
     width: 300px;
     margin-top: 10px;

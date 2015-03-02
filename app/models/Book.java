@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import com.google.gson.annotations.Expose;
+
 import play.db.jpa.GenericModel;
 import play.db.jpa.Model;
 
@@ -30,6 +33,9 @@ public class Book extends GenericModel {
 	private String author;
 	@Expose
 	private Date manufacturedDate;
+	@Expose
+	@Column(length = 2000)
+	private String description;
 	@Expose
 	@ManyToOne
 	private Genre genre;
@@ -83,6 +89,14 @@ public class Book extends GenericModel {
 
 	public void setGenre(Genre genre) {
 		this.genre = genre;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	

@@ -114,6 +114,11 @@
     
 }
 
+.content_right p{
+	font-size:13px;
+	margin-left:-9px;
+}
+
 .sign-in-form{
     float: right;
     width: 220px;

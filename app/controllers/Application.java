@@ -15,7 +15,17 @@ import models.*;
 public class Application extends Controller {
 
 	public static void signUp(User user) {
-		user.save();
+		if (user.getName().equals("") || user.getSurname().equals("")
+				|| user.getLogin().equals("") || user.getPassword().equals("")) {
+			flash.error("Все поля должны быть заполнены!");
+			signUpPage();
+
+		}else{
+			user.save();
+			flash.error("Поздравляем вы зарегистрированы!");
+			signUpPage();
+		}
+		
 	}
 
 	public static void signIn(String login, String password) {
@@ -24,16 +34,8 @@ public class Application extends Controller {
 		User connectedUser = User.find("byLoginAndPassword", login, password)
 				.first();
 
-		if (login.equals("") && password.equals("")) {
-			flash.error("Введите пожалуйста ваш логин и пароль!");
-			index();
-		}
-		if (login.equals("")) {
-			flash.error("Введите пожалуйста ваш логин!");
-			index();
-		}
-		if (password.equals("")) {
-			flash.error("Введите пожалуйста ваш пароль!");
+		if (login.equals("") || password.equals("")) {
+			flash.error("Неправильный логин или пароль!");
 			index();
 		}
 
@@ -46,13 +48,15 @@ public class Application extends Controller {
 			}
 		} else {
 			System.out.println("No such user in database!");
-			flash.error("Неверное имя пользователя или пароль!");
+			flash.error("Неправильный логин или пароль!");
 			index();
 		}
 	}
 
 	public static void addBook(String name, String author, String date,
-			int genreId) {
+			int genreId, String description) {
+		System.out.println("description: " + description);
+
 		Date manuDate = null;
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		try {
@@ -64,11 +68,13 @@ public class Application extends Controller {
 		book.setName(name);
 		book.setAuthor(author);
 		book.setManufacturedDate(manuDate);
+		book.setDescription(description);
 		System.out.println("genreId is: " + genreId);
 		Genre genre = Genre.findById(Long.valueOf(genreId));
 		// System.out.println("genre name is: "+genre.getName());
 		book.setGenre(genre);
 		book.save();
+		System.out.println("Book has been added!");
 		adminPage();
 	}
 
@@ -168,6 +174,19 @@ public class Application extends Controller {
 		String json = gson.toJson(orderedBooks);
 		renderJSON(json);
 
+	}
+
+	public static void getBookForDescription(int bookId) {
+		System.out.println("bookId: " + bookId);
+		Book book = Book.findById(Long.valueOf(bookId));
+		if (book != null) {
+			System.out.println("We find book: " + book.getDescription());
+		}
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation()
+				.create();
+		String json = gson.toJson(book);
+		System.out.println("json: " + json);
+		renderJSON(json);
 	}
 
 	public static void adminPage() {

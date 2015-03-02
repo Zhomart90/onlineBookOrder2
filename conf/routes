@@ -4,12 +4,13 @@
 
 # Home page
 GET     /                                                                  Application.index
+GET     /application/bookForDescription.json/{bookId}                      Application.getBookForDescription
 GET     /application/user.json/{login}                                     Application.getUserDataByLogin
 GET     /application/userOrderedBooks.json/{login}                         Application.getUserOrderedBooks
 GET     /application/allGenres.json/                                       Application.getAllGenres
 GET     /application/booksByGenre.json/{selectedGenreId}                   Application.getBooksById
 #GET     /application/orderedBooks/{selectedBooks}/{login}                 Application.orderBook
-GET     /application/book/{name}/{author}/{date}/{genreId}                 Application.addBook
+POST     /application/book/{name}/{author}/{date}/{genreId}/{description}   Application.addBook
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

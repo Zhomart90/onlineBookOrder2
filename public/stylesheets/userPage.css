@@ -257,5 +257,18 @@
 .content_right_text p{
      padding-left: 10px;
      font-size: 13px;
+     margin-top:5px;
+    
+}
+
+.content_right_text h3{
+     margin-bottom: 5px;
+}
+
+.content_right_text span{
+	font-size: 14px;
+	font-weight: bold;
+	margin-left:10px;
+	
 }
 
